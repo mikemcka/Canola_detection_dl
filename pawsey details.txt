@@ -1,0 +1,31 @@
+to join pawsey and jupyter notebook
+
+ls
+cd $MYGROUP
+cd singularity/
+vi jupyter_nb_rocm.slm to adjust time required
+sbatch jupyter_nb_rocm.slm
+squeue -u mmckay
+ssh -N -f -L 7777:node:7777 mmckay@setonix.pawsey.org.au
+change node to node number shown in squeue
+cat slurm
+copy token into http://localhost:7777/tree? in browser (only token)
+token also located in slurm output file
+run jupyter notebook
+
+if jupyter notebook times out:
+kill with
+
+lsof -ti:7777| xargs kill -9
+
+Then recconect with ssh -N -f -L 7777:node:7777 mmckay@setonix.pawsey.org.a
+in   ubuntu powershell terminal 
+scancel to cancel batch job
+
+files @ cd $MYGROUP
+cd $ MYSCRATCH
+
+to install package
+!TMPDIR=/home/mmckay pip install --cache-dir=/home/mmckay --build /home/mmckay fastai
+change name of package to install
+
