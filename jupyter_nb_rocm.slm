@@ -8,11 +8,10 @@
 #SBATCH --gpus-per-task=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --job-name=pyfast
-#SBATCH --partition=gpu
 
 #using --exclusive tag will allow me to get full node resources with 8 GPUs
 
-image='/scratch/pawsey0149/mmckay/pytorch_rocm5.0_ubuntu18.04_py3.7_pytorch_1.10.0.sif'
+image='/scratch/pawsey0149/mmckay/pytorch_latest.sif'
 nbs_dir='/scratch/pawsey0149/mmckay'
 #overlay='/scratch/pawsey0149/mmckay/my_overlay'
 home_dir='/scratch/pawsey0149/mmckay/fake_home'
@@ -22,7 +21,8 @@ module load rocm/5.2.3
 export SINGULARITYENV_ROCM_HOME=$ROCM_HOME
 export OMP_NUM_THREADS=1
 
-srun -N 1 -n 1 -c 8 --gpus-per-node=1 --gpus-per-task=1  singularity run \
+srun -N 1 -n 1 -c 8 --gpus-per-node=1 --gpus-per-ta
+k=1  singularity run \
                       -B ${home_dir}:/home/mmckay \
                       -B ${nbs_dir}:/nbs_dir \
 		      -B /scratch/pawsey0149/mmckay/10-docker2singularity.sh:/.singularity.d/env/10-docker2singularity.sh \
