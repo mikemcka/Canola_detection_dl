@@ -25,7 +25,7 @@ export OMP_NUM_THREADS=1
 srun -N 1 -n 1 -c 8 --gpus-per-node=1 --gpus-per-task=1  singularity run \
                       -B ${home_dir}:/home/mmckay \
                       -B ${nbs_dir}:/nbs_dir \
-		      -B /scratch/pawsey0149/modanilevicz/dnaBert_v2/Scripts/10-docker2singularity.sh:/.singularity.d/env/10-docker2singularity.sh \
+		      -B /scratch/pawsey0149/mmckay/10-docker2singularity.sh:/.singularity.d/env/10-docker2singularity.sh \
                       $image \
                      /home/mmckay/.local/bin/jupyter notebook --no-browser --port=7777 --ip 0.0.0.0 --notebook-dir /nbs_dir
 
